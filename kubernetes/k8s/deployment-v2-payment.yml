@@ -3,23 +3,23 @@ kind: Deployment
 metadata:
   labels:
     app: payment
-    version: v1
-  name: payment-v1
+    version: v2
+  name: payment-v2
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: payment
-      version: v1
+      version: v2
   template:
     metadata:
       labels:
         app: payment
-        version: v1
+        version: v2
     spec:
       containers:
       - env:
-        image: siddharth67/istio-payment:v1
+        image: siddharth67/uat-payment:v2
         imagePullPolicy: IfNotPresent
         name: payment
         ports:
@@ -28,17 +28,3 @@ spec:
           protocol: TCP
         securityContext:
           privileged: false
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: payment
-  labels:
-    app: payment    
-spec:
-  ports:
-  - name: http
-    port: 8080
-  selector:
-    app: payment
----

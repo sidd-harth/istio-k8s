@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: booking
+  name: movies
   labels:
-    app: booking    
+    app: movies    
 spec:
   ports:
   - name: http
     port: 8080
   selector:
-    app: booking
-  type: NodePort
+    app: movies
+  type: ClusterIP

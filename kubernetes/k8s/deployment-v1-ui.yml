@@ -2,28 +2,28 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: payment
-    version: v2
-  name: payment-v2
+    app: php-ui
+    version: v1
+  name: php-ui-v1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: payment
-      version: v2
+      app: php-ui
+      version: v1
   template:
     metadata:
       labels:
-        app: payment
-        version: v2
+        app: php-ui
+        version: v1
     spec:
       containers:
       - env:
-        image: siddharth67/istio-payment:v2
+        image: siddharth67/uat-ui:v1
         imagePullPolicy: IfNotPresent
-        name: payment
+        name: php-ui
         ports:
-        - containerPort: 8080
+        - containerPort: 80
           name: http
           protocol: TCP
         securityContext:
