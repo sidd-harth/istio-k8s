@@ -25,27 +25,11 @@ spec:
   http:
   - match:
     - uri:
-        exact: /
+        exact: /movies
     - uri:
-        exact: /ui
+        prefix: /ui
     route:
     - destination:
         host: movies
         port:
           number: 8080
-    corsPolicy:
-        allowCredentials: true
-        allowHeaders:
-          - x-api-key
-          - accept
-          - content-type
-          - origin
-        allowMethods:
-          - GET
-          - POST
-          - OPTIONS
-        allowOrigin:
-          - '*'
-        exposeHeaders:
-          - '*'
-        maxAge: 24h 

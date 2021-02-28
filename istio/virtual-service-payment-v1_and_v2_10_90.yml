@@ -1,14 +1,18 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: movies
+  name: payment
 spec:
   hosts:
-  - movies
+  - payment
   http:
   - route:
     - destination:
-        host: movies
+        host: payment
         subset: version-v1
-      weight: 100
+      weight: 10
+    - destination:
+        host: payment
+        subset: version-v2
+      weight: 90
 ---
