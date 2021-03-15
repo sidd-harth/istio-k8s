@@ -6,10 +6,7 @@ spec:
   hosts:
   - payment
   http:
-  - retries:
-      attempts: 3
-      perTryTimeout: 4.000s
-    route:
+  - route:
     - destination:
         host: payment
         subset: version-v1
@@ -18,4 +15,7 @@ spec:
         host: payment
         subset: version-v2
       weight: 50
+    retries:
+      attempts: 3
+      perTryTimeout: 4.000s
 ---

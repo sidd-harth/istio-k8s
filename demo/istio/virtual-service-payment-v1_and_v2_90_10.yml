@@ -6,16 +6,13 @@ spec:
   hosts:
   - payment
   http:
-  - match:
-    - headers:
-        baggage-user-agent:
-          regex: .*Edg.*
-    route:
-    - destination:
-        host: payment
-        subset: version-v2
   - route:
     - destination:
         host: payment
         subset: version-v1
+      weight: 10
+    - destination:
+        host: payment
+        subset: version-v2
+      weight: 90
 ---
