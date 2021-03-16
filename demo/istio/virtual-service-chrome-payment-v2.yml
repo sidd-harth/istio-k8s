@@ -6,9 +6,16 @@ spec:
   hosts:
   - payment
   http:
-  - route:
+  - match:
+    - headers:
+        baggage-user-agent:
+          regex: .*Chrome.*
+    route:
     - destination:
         host: payment
         subset: version-v2
-      weight: 100
+  - route:
+    - destination:
+        host: payment
+        subset: version-v1
 ---
